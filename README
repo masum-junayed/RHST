@@ -1,5 +1,4 @@
-# Reliability-aware Multimodal Histology + Spatial Transcriptomics
-
+# RHT 
 Research-grade PyTorch **reference implementation** corresponding to the proposed architecture:
 
 `224x224 ST-aligned patches → frozen pretrained UNI features`
@@ -14,7 +13,6 @@ Research-grade PyTorch **reference implementation** corresponding to the propose
 
 Loss = grading cross-entropy + λ_rec reconstruction MSE + β KL + λ_sp morphology-weighted neighbor smoothness.
 
-**Status:** This is independently written from the methodology provided by the author, not original experiment code and not a verified reproduction of manuscript numbers. You must run it on genuine labeled data. No dataset, trained UNI weights, experimental outputs, or paper results are bundled. The HEST-1k collection as a whole does **not** supply universal slide-level grade labels; create a documented labeled cohort with a consistent grading system. HER2ST/CAMEO/Visium HD require separate label/task mapping. Do not claim all datasets share the same clinical grades.
 
 ## Structure
 
@@ -113,7 +111,7 @@ python scripts/test.py --checkpoint outputs/default/fold_0/best.pt \
   --config configs/default.yaml --output external_results.json
 ```
 
-External labels **must** conform to the same class names and gene order and use the same encoder feature dimensionality. A fold model trained with a different grading ontology is **not** directly comparable to tumor-vs-normal labels.
+External labels **must** conform to the same class names and gene order and use the same encoder feature dimensionality. A fold model trained with a different grading ontology is not directly comparable to tumor-vs-normal labels.
 
 ## Inference (no labels needed)
 
