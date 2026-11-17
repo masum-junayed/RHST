@@ -1,0 +1,48 @@
+seed: 42
+# npz containing spot-aligned image_features, genes, coords for every section
+manifest: data/manifest.csv
+output_dir: outputs/default
+# Select the exact target grade column, not a tissue class unless explicitly studying tissue classes.
+label_column: grade_label
+patient_column: patient_id
+cohort_column: cohort
+primary_cohort: HEST-1k
+n_folds: 5
+val_fraction: 0.2
+num_workers: 0
+max_spots: 256          # bounded attention memory; sampled in training, deterministic in testing
+feature_dim: null       # inferred from first NPZ
+n_genes: null           # inferred from first NPZ (all sections must use same gene ordering)
+model:
+  d_model: 512
+  n_heads: 8
+  latent_dim: 256
+  dropout: 0.1
+  gene_hidden: 256
+  fusion_hidden: 512
+  refine_hidden: 128
+  classifier_hidden: 256
+  use_gene: true
+  use_cross_attention: true
+  use_vae: true
+  use_refinement: true
+  use_tumor_pooling: true
+training:
+  epochs: 100
+  sample_batch_size: 2 # this is a batch of SECTION samples, NOT 128 UNI extraction patches
+  lr: 0.0001
+  optimizer: adam
+  step_size: 20
+  gamma: 0.5
+  weight_decay: 0.0
+  patience: 15
+  feature_batch_size: 128
+  grad_clip: 1.0
+  lambda_rec: 1.0
+  beta: 0.01
+  lambda_sp: 0.1
+  neighbors: 4
+  spatial_sigma: 1.0
+  morphology_temperature: 1.0
+  val_metric: qwk
+  # No test labels are used for checkpoint selection

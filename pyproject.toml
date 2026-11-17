@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "reliability-histology-st"
+version = "0.1.0"
+description = "Research implementation of reliability-aware H&E + spatial transcriptomics grading"
+requires-python = ">=3.10"
+[tool.setuptools.packages.find]
+where = ["src"]
