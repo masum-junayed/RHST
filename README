@@ -2,7 +2,7 @@
 
 Research-grade PyTorch **reference implementation** corresponding to the proposed architecture:
 
-`224x224 ST-aligned H&E patches → frozen pretrained UNI features`
+`224x224 ST-aligned patches → frozen pretrained UNI features`
 
 `spatial gene counts → trainable gene MLP`
 
